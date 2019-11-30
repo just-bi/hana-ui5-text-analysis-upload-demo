@@ -1,0 +1,39 @@
+/*
+   Copyright 2019 and onwards, Roland.Bouman@gmail.com, Just-bi.nl
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+
+namespace "system-local"."public"."rbouman"."ta"."db";
+
+@Schema: 'RBOUMAN'
+@Catalog.tableType: #COLUMN
+Entity CT_FILE {
+	Key "FILE_NAME"                     : String(256)  not null;
+	    "FILE_TYPE"                     : String(256)  not null;
+	    "FILE_LAST_MODIFIED"            : UTCTimestamp not null;
+	    "FILE_SIZE"                     : Integer      not null;
+	    "FILE_CONTENT"                  : LargeBinary  not null;
+	    "FILE_LAST_UPLOADED"            : UTCTimestamp not null ;
+} technical configuration {
+    FULLTEXT INDEX "FT_IDX_CT_FILE" on ("FILE_CONTENT")
+        ASYNCHRONOUS
+        LANGUAGE DETECTION ('en')
+        MIME TYPE COLUMN "FILE_TYPE"
+        FUZZY SEARCH INDEX off
+        PHRASE INDEX RATIO 0.721
+        SEARCH ONLY OFF
+        FAST PREPROCESS OFF
+        TEXT ANALYSIS ON
+        CONFIGURATION 'EXTRACTION_CORE';
+};

@@ -15,7 +15,7 @@ There is a series of blog posts available that explains the background of this d
 ## SAP HANA 1.0 - Installation
 
 * Create a package with your favorite IDE for SAP HANA (Web IDE, SAP HANA Studio, Eclipse with SAP HANA Developer Tools)
-* [Download](https://github.com/just-bi/hana-ui5-text-analysis-upload-demo/archive/master.zip) and archive of this repository
+* [Download](https://github.com/just-bi/hana-ui5-text-analysis-upload-demo/archive/master.zip) an archive of this repository
 * Unzip the archive and transfer its contents to the HANA package you just created.
 * With `db/CT_FILE.hdbdd`:
   * update the `namespace`, update the package identifier from `"system-local"."public"."rbouman"."ta"` to the name of the package you just created.

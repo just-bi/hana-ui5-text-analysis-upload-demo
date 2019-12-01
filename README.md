@@ -1,6 +1,17 @@
 # hana-ui5-text-analysis-upload-demo
 A simple ui5 app to upload documents to SAP HANA to demo its text mining and analysis features.
 
+![Overview of the UI5 Upload Demo App for exploring SAP HANA Text Analysis](https://drive.google.com/uc?id=1wJlPq9osrJZQQyA2Aw2St_JjBn8ReH51&authuser=0&export=download "Application Overview Screenshot")
+
+## Background and Overview
+
+There is a series of blog posts available that explains the background of this demo application, some of the design considerations, and some information concerning implementation details:
+
+* Part 1 - an Overview: [SAP HANA Text Analysis on Documents uploaded by an end-user](http://rpbouman.blogspot.com/2019/12/building-ui5-demo-for-sap-hana-text.html")
+* Part 2 - Hands on: [Building the backend for a SAP HANA Text Analysis application](https://rpbouman.blogspot.com/2019/12/building-ui5-demo-for-sap-hana-text_1.html)
+* Part 3 - Presenting: [A UI5 front-end to upload documents and explore SAP HANA Text Analytics features](https://rpbouman.blogspot.com/2019/12/building-ui5-demo-for-sap-hana-text_2.html)
+* Part 4 - Deep dive: [How to upload documents with OData in a UI5 Application](https://rpbouman.blogspot.com/2019/12/building-ui5-demo-for-sap-hana-text_3.html)
+
 ## SAP HANA 1.0 - Installation
 
 * Create a package with your favorite IDE for SAP HANA (Web IDE, SAP HANA Studio, Eclipse with SAP HANA Developer Tools)

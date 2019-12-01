@@ -335,7 +335,9 @@ toolbar.addContentLeft(new sap.m.Button({
   tooltip: 'Click to upload a file for text analysis.',
   press: onUploadPressed
 }));
+
 toolbar.addContentMiddle(new sap.m.Title({text: 'Just-Bi.nl - SAP HANA Text Analysis Ui5 Demo App'}));
+
 toolbar.addContentRight(new sap.m.Button({
   icon: 'https://www.just-bi.nl/wp-content/uploads/2018/09/Just-BI-insight-2018v3.svg',
   tooltip: 'Just-Bi Homepage',
@@ -348,6 +350,13 @@ toolbar.addContentRight(new sap.m.Button({
   tooltip: 'Check out this app on github',
   press: function(){
     window.open('https://github.com/just-bi/hana-ui5-text-analysis-upload-demo');
+  }
+}));
+toolbar.addContentRight(new sap.m.Button({
+  icon: 'sap-icon://sys-help',
+  tooltip: 'Help and explanation',
+  press: function(){
+    window.open('http://rpbouman.blogspot.com/2019/12/building-ui5-demo-for-sap-hana-text_28.html');
   }
 }));
 page.setCustomHeader(toolbar);

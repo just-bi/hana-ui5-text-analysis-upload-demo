@@ -206,8 +206,13 @@ var fileToUploadExists;
 function onFileToUploadChanged(event){
   fileToUpload = null;
   fileToUploadExists = false;
-  var files = event.getParameter('files');          
+  var files = event.getParameter('files');
+  if (files.length === 0) {
+    initFileUploadDialog();
+    return;
+  }
   fileToUpload  = files[0];
+  fileUploader.setBusy(true);
   model.read('/' + filesEntityName, {
     filters: [new sap.ui.model.Filter({
       path: fileNamePath,
@@ -218,17 +223,20 @@ function onFileToUploadChanged(event){
       $select: [fileNamePath, 'FILE_LAST_MODIFIED']
     },            
     success: function(data){
+      fileUploader.setBusy(false);
       var valueState, valueStateText;
       switch (data.results.length) {
         case 0:
           valueState = sap.ui.core.ValueState.Information;
           valueStateText = 'New File will be uploaded.';
           fileToUploadExists = false;
+          confirmUploadButton.setEnabled(true);    
           break;
         case 1:
           valueState = sap.ui.core.ValueState.Warning;
           valueStateText = 'Existing file will be overwritten.';
           fileToUploadExists = true;
+          confirmUploadButton.setEnabled(true);    
           break;
         default:
           valueState = sap.ui.core.ValueState.Error;
@@ -239,15 +247,17 @@ function onFileToUploadChanged(event){
       fileUploader.setValueStateText(valueStateText);
     },
     error: function(error){
+      fileUploader.setBusy(false);
       var valueState, valueStateText;
       valueState = sap.ui.core.ValueState.Error;
-      
+      confirmUploadButton.setEnabled(false);
     }
   });
 }
 var fileUploader = new sap.ui.unified.FileUploader({
   buttonText: 'Browse File...',
-  change: onFileToUploadChanged
+  change: onFileToUploadChanged,
+  busyIndicatorDelay: 0
 });
 
 function uploadFile(){
@@ -293,10 +303,11 @@ var uploadDialog = new sap.m.Dialog({
   title: 'Upload File'
 });
 uploadDialog.addContent(fileUploader);
-uploadDialog.addButton(new sap.m.Button({
+var confirmUploadButton = new sap.m.Button({
   text: 'Upload',
   press: uploadFile
-}));
+});
+uploadDialog.addButton(confirmUploadButton);
 uploadDialog.addButton(new sap.m.Button({
   text: 'Cancel',
   press: function(){
@@ -304,15 +315,22 @@ uploadDialog.addButton(new sap.m.Button({
   }
 }));
 
+function initFileUploadDialog(){
+  confirmUploadButton.setEnabled(false);
+  valueState = sap.ui.core.ValueState.Information;
+  valueStateText = 'Choose a file.';
+  fileUploader.setValueState(valueState);
+  fileUploader.setValueStateText(valueStateText);
+  fileUploader.setValue('');
+}
+
 function openUploadDialog(){
+  initFileUploadDialog();
   uploadDialog.open();
 }
 
 function closeUploadDialog(){          
   uploadDialog.close();
-  fileUploader.setValueState(sap.ui.core.ValueState.None);
-  fileUploader.setValueStateText('');
-  fileUploader.setValue('');
 }
 
 function onUploadPressed(event) {

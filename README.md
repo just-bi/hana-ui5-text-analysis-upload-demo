@@ -16,7 +16,9 @@ There is a series of blog posts available that explains the background of this d
 
 * Create a package with your favorite IDE for SAP HANA (Web IDE, SAP HANA Studio, Eclipse with SAP HANA Developer Tools)
 * [Download](https://github.com/just-bi/hana-ui5-text-analysis-upload-demo/archive/master.zip) an archive of this repository
-* Unzip the archive and transfer its contents to the HANA package you just created.
+* Unzip the archive and transfer its contents to the HANA package you just created. 
+  * If you're using the SAP HANA Web IDE, you might be able to [import the .zip directy](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.04/en-US/e39599b757c541beb8e50b454f8d2431.html). 
+  * If you're using SAP HANA Studio or Eclipse with SAP HANA Developer tools, you can right click on the your package and choose checkout. The package will the be available as a folder on your local file system, and you can simply copy the contents of the archive into that folder. The local folder that corresponds to the root of your repository is visible in the repository tab from the HANA Developer Perspective. The path of the folder corresponds to the path of the repository package. In Eclipse, you will need to right click your package and choose "Refresh" so the files will show up there too.
 * With `db/CT_FILE.hdbdd`:
   * update the `namespace`, update the package identifier from `"system-local"."public"."rbouman"."ta"` to the name of the package you just created.
   * modify the `@Schema` from `'RBOUMAN'` to whatever schema you want to use. (Create a schema yourself if you don't already have one)
